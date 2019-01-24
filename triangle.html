@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>三角形</title>
+  <style>
+  .trangle{
+  width:0;
+  border-top:50px solid blue;
+  border-right:50px solid yellow;
+  border-bottom:50px solid green;
+  border-left:50px solid red;
+  margin:20px;
+}
+.up{
+  border-right:50px solid transparent;
+  border-bottom:50px solid transparent;
+  border-left:50px solid transparent;
+}
+.right{
+  border-top:50px solid transparent;
+  border-bottom:50px solid transparent;
+  border-left:50px solid transparent;
+}
+.down{
+  border-right:50px solid transparent;
+  border-top:50px solid transparent;
+  border-left:50px solid transparent;
+}
+.left{
+  border-right:50px solid transparent;
+  border-bottom:50px solid transparent;
+  border-top:50px solid transparent;
+}
+.down-left{
+  border-top:50px solid transparent;
+  border-right:50px solid transparent;
+  border-bottom:50px solid red;
+  border-left:50px solid red;
+}
+.down-right{
+  border-top:50px solid transparent;
+  border-left:50px solid transparent;
+  border-bottom:50px solid green;
+  border-right:50px solid green;
+}</style>
+</head>
+<body>
+<div>
+  <div class="trangle"></div>
+  <div class="trangle up"></div>
+  <div class="trangle left"></div>  
+  <div class="trangle right"></div>
+  <div class="trangle down"></div>
+  <div class="trangle down-left"></div>
+  <div class="trangle down-right"></div>
+</div>
+</body>
+</html>
