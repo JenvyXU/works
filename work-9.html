@@ -4,82 +4,96 @@
     <meta charset="UTF-8">
     <title>浮动定位</title>
     <style>
-    *{
-  margin:0;
-  padding:0;
-}
-a{
-    text-decoration: none;
-    color: #333;
-}
-.card{
-  position:relative;
-  width:500px;
-  background:#51AD55;
-  color:#fff;
-  padding:16px;
-  border-radius:4px;
-  margin:100px auto;
-}
-h1{
-  margin-bottom:16px;
-  font-size:28px;
-}
-#close{
-  position:absolute;
-  right:10px;
-  top:0px;
-  cursor:pointer;
-  font-size:20px;
-  font-weight:bold;
-}
-ul{
-    list-style: none;
-}
-nav{
-    width: 100%;
-    background: pink;
-    margin: 200px auto;
-    width: 600px;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,.4);
-    position: relative;
-}
-ul::after{
-    content:'';
-    display: block;
-    clear: both;
-}
-nav>ul>li{
-    float:left;
-    
-}
-nav a{
-    display: inline-block;
-    padding: 10px 16px;
-    background: pink;
-    transition: all .3s;
-}
-nav a:hover{
-    background:#CCCCCC;
-    color: #fff;
-}
-.sub-nav{
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,.4);
-    position: absolute;
-    top: 100%;
-    display: none;
-    transition: all .3s;
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-}
-nav>ul>li:hover .sub-nav{
-    display: block;
+        a {
+            text-decoration: none;
+            color: #333;
+        }
 
-}
-.sub-nav a{
-    min-width:160px;
-}
+        .card {
+            position: relative;
+            width: 500px;
+            background: #51AD55;
+            color: #fff;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 100px auto;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+            font-size: 28px;
+        }
+
+        #close {
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        nav {
+            width: 100%;
+            background: pink;
+            margin: 200px auto;
+            width: 600px;
+            box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .4);
+            position: relative;
+        }
+
+        ul::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        nav>ul>li {
+            float: left;
+
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: pink;
+            transition: all .3s;
+        }
+
+        nav a:hover {
+            background: #CCCCCC;
+            color: #fff;
+        }
+
+        .sub-nav {
+            box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .4);
+            position: absolute;
+            top: 100%;
+            display: none;
+            transition: all .3s;
+
+        }
+
+        nav>ul>li:hover .sub-nav {
+            display: block;
+
+        }
+
+        .sub-nav a {
+            min-width: 160px;
+        }
     </style>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -99,6 +113,7 @@ nav>ul>li:hover .sub-nav{
         <h1>恭喜你</h1>
         <p>获得本周学霸，继续加油吧</p>
         <div id="close">&#xD7;</div>
-      </div>
+    </div>
 </body>
+
 </html>
