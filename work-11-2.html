@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>三栏自适应布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: white;
+        }
+
+        .wrapper {
+            min-width: 400px;
+        }
+
+        aside {
+            width: 200px;
+            height: 800px;
+            background: blue;
+            padding: 5px;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        main {
+            background: red;
+            height: 800px;
+            margin-left: 204px;
+            margin-right: 204px;
+            padding: 5px;
+            min-width:100px;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: blcok;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper clearfix">
+        <aside class="left">固定左边栏</aside>
+        <aside class="right">固定右边栏</aside>
+        <main>自适应</main>
+    </div>
+
+</body>
+
+</html>

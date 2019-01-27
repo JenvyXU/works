@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>两栏自适应布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wrapper {
+            background: pink;
+            height: 100vh;
+            padding: 1px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            display: inline-block;
+            margin-top: 100px;
+        }
+
+        ul::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        ul>li {
+            float: left;
+            padding: 6px 10px;
+            background: red;
+            color: white;
+            font-size: 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul>
+            <li>按钮1</li>
+            <li>按钮2</li>
+            <li>按钮3</li>
+        </ul>
+    </div>
+</body>
+
+</html>

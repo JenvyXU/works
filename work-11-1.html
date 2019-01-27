@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>两栏自适应布局</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: white;
+        }
+
+        aside {
+            width: 200px;
+            height: 800px;
+            background: blue;
+            float: left;
+            padding: 5px;
+        }
+
+        main {
+            background: red;
+            height: 800px;
+            margin-left: 204px;
+            padding: 5px;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: blcok;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clearfix">
+        <aside>固定边栏</aside>
+        <main>自适应</main>
+    </div>
+
+</body>
+
+</html>
