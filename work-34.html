@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery实现Tab切换</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      height: 100%;
+      background-color: #eee;
+
+    }
+    .clearfix::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+    .wrapper {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mod-tab h1 {
+      font-size: 18px;
+      font-weight: normal;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .mod-tab {
+      margin: 20px;
+    }
+    .mod-tab .tab {
+      float: left;
+      border-top: 1px solid #bbb;
+      border-right: 1px solid #bbb;
+      padding: 10px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .mod-tab .tab.active {
+      background-color: #fff;
+    }
+    .mod-tab .tab:nth-child(1) {
+      border-left: 1px solid #bbb;
+    }
+    .content div {
+      width: 400px;
+      padding: 100px;
+      text-align: center;
+      font-size: 20px;
+      border: 1px solid #bbb;
+      display: none;
+    }
+    .content div.active {
+      display: block;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="mod-tab">
+      <div class="header clearfix">
+        <div class="tab active">1</div>
+        <div class="tab">2</div>
+        <div class="tab">3</div>
+        <div class="tab">4</div>
+      </div>
+      <div class="content">
+        <div class="active">pannel 1</div>
+        <div>pannel 2</div>
+        <div>pannel 3</div>
+        <div>pannel 4</div>
+      </div>
+      <h1>jQuery实现tab切换</h1>
+    </div>
+    <div class="mod-tab">
+      <div class="header clearfix">
+        <div class="tab active" data-index="1">1</div>
+        <div class="tab" data-index="2">2</div>
+        <div class="tab" data-index="3">3</div>
+        <div class="tab" data-index="4">4</div>
+      </div>
+      <div class="content">
+        <div class="active">pannel 1</div>
+        <div>pannel 2</div>
+        <div>pannel 3</div>
+        <div>pannel 4</div>
+      </div>
+      <h1>原生js实现tab切换</h1>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+  <script>
+    //jqeury实现tab切换
+    $('.mod-tab:first .header').on('click', function (e) {
+      $(e.target).addClass('active').siblings().removeClass('active')
+        .parent().next().children().eq($(e.target).index())
+        .addClass('active').siblings().removeClass('active')
+      // console.log($(e.target).index())
+      // $(e.target).parent().next().children().eq($(e.target).index())
+      // .addClass('active').siblings().removeClass('active')
+    })
+
+    //原生js实现tab切换
+    var tab = document.querySelector('.mod-tab:nth-child(2) .header')
+    tab.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-index')) {
+        var content = this.nextSibling.nextSibling.children
+        var pannelIndex = e.target.innerText - 1 //确定哪一个pannel需要添加class 
+        for (var tabIndex = 0; tabIndex < this.children.length; tabIndex++) {
+          this.children[tabIndex].classList.remove('active')
+          content[tabIndex].classList.remove('active')
+        }
+        e.target.classList.add('active')
+        content[pannelIndex].classList.add('active')
+      }
+    })
+  </script>
+</body>
+</html>
