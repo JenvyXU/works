@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瀑布流布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    .title {
+      text-align: center;
+      color: #666;
+      margin: 20px;
+    }
+
+    .containner img {
+      display: block;
+      width: 100px;
+    }
+
+    .containner {
+      max-width: 1080px;
+      margin: 20px auto;
+      position: relative;
+      border-top: 1px solid #ccc
+    }
+
+    .containner>ul>li {
+      position: absolute;
+      display: inline-block;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">瀑布流布局</h1>
+  <div class="containner">
+    <ul>
+      <li><img src="https://via.placeholder.com/100x300/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x100/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x150/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x260/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x160/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x225/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x180/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x280/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x120/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x160/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x200/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x240/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x250/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x140/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x270/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x120/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x170/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x110/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x220/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x300/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x100/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x150/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x260/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x160/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x225/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x180/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x280/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x120/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x160/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x200/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x240/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x250/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x140/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x270/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x120/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x170/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x110/09f/fff.png" alt=""></li>
+      <li><img src="https://via.placeholder.com/100x220/09f/fff.png" alt=""></li>
+    </ul>
+
+  </div>
+</body>
+<script src="./vendors/jquery.min.js"></script>
+<script>
+
+  //计算出有多少列图片，给每一列设置初始高度为0
+  let liWidth = $('.containner li').outerWidth(true)
+  let colNum = Math.floor($('.containner').width() / liWidth)
+  $('.containner').css({
+    width:liWidth*colNum
+  })
+  var colHeightArray = []
+
+  for (let i = 0; i < colNum; i++) {
+    colHeightArray[i] = 0
+  }
+
+  //获取到图片以后，才可以计算图片的位置，没有加载到图片前，宽高都是0
+  $('.containner img').on('load', function () {
+    let minHeight = colHeightArray[0]
+    var minIndex = 0
+    //找出高度最小的那一列
+    for (let i = 0; i < colNum; i++) {
+      if (colHeightArray[i] < minHeight) {
+        minHeight = colHeightArray[i]
+        minIndex = i
+      }
+    }
+ 
+    //把图片放在高度最小的那一列下面
+
+    $(this).parent().css({
+      left: minIndex * liWidth,
+      top: minHeight
+    })
+    colHeightArray[minIndex] += $(this).parent().outerHeight(true)
+  })
+
+</script>
+
+</html>
