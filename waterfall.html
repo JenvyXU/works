@@ -12,6 +12,10 @@
       box-sizing: border-box;
     }
 
+    body {
+      padding: 0 50px;
+    }
+
     ul,
     ol {
       list-style: none;
@@ -29,7 +33,6 @@
     }
 
     .containner {
-      max-width: 1080px;
       margin: 20px auto;
       position: relative;
       border-top: 1px solid #ccc
@@ -39,6 +42,7 @@
       position: absolute;
       display: inline-block;
       margin: 10px;
+      transition: all .6s;
     }
   </style>
 </head>
@@ -90,37 +94,48 @@
 </body>
 <script src="./vendors/jquery.min.js"></script>
 <script>
-  //计算出有多少列图片，给每一列设置初始高度为0
-  let liWidth = $('.containner li').outerWidth(true)
-  let colNum = Math.floor($('.containner').width() / liWidth)
-  $('.containner').css({
-    width:liWidth*colNum
-  })
-  var colHeightArray = []
 
-  for (let i = 0; i < colNum; i++) {
-    colHeightArray[i] = 0
+  //计算出有多少列图片，给每一列设置初始高度为0
+  var liWidth
+  var colNum
+  var colHeightArray
+  waterfall()
+
+  function waterfall() {
+    liWidth = $('.containner li').outerWidth(true)
+    colNum = Math.floor(($(window).width() - 118) / liWidth) //调整window可以自适应布局
+    $('.containner').css({
+      width: liWidth * colNum
+    })
+
+    colHeightArray = []
+
+    for (let i = 0; i < colNum; i++) {
+      colHeightArray[i] = 0
+    }
+    //获取到图片以后，才可以计算图片的位置，没有加载到图片前，宽高都是0
+    $('.containner img').each(function () {
+      var minHeight = colHeightArray[0]
+      var minIndex = 0
+      //找出高度最小的那一列
+      for (let i = 0; i < colNum; i++) {
+        if (colHeightArray[i] < minHeight) {
+          minHeight = colHeightArray[i]
+          minIndex = i
+        }
+      }
+
+      //把图片放在高度最小的那一列下面
+      $(this).parent().css({
+        left: minIndex * liWidth,
+        top: minHeight
+      })
+      colHeightArray[minIndex] += $(this).parent().outerHeight(true)
+    })
   }
 
-  //获取到图片以后，才可以计算图片的位置，没有加载到图片前，宽高都是0
-  $('.containner img').each(function () {
-    let minHeight = colHeightArray[0]
-    var minIndex = 0
-    //找出高度最小的那一列
-    for (let i = 0; i < colNum; i++) {
-      if (colHeightArray[i] < minHeight) {
-        minHeight = colHeightArray[i]
-        minIndex = i
-      }
-    }
- 
-    //把图片放在高度最小的那一列下面
-
-    $(this).parent().css({
-      left: minIndex * liWidth,
-      top: minHeight
-    })
-    colHeightArray[minIndex] += $(this).parent().outerHeight(true)
+  $(window).on('resize', function () {
+    waterfall()
   })
 
 </script>
