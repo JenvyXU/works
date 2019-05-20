@@ -86,12 +86,10 @@
       <li><img src="https://via.placeholder.com/100x110/09f/fff.png" alt=""></li>
       <li><img src="https://via.placeholder.com/100x220/09f/fff.png" alt=""></li>
     </ul>
-
   </div>
 </body>
 <script src="./vendors/jquery.min.js"></script>
 <script>
-
   //计算出有多少列图片，给每一列设置初始高度为0
   let liWidth = $('.containner li').outerWidth(true)
   let colNum = Math.floor($('.containner').width() / liWidth)
@@ -105,7 +103,7 @@
   }
 
   //获取到图片以后，才可以计算图片的位置，没有加载到图片前，宽高都是0
-  $('.containner img').on('load', function () {
+  $('.containner img').each(function () {
     let minHeight = colHeightArray[0]
     var minIndex = 0
     //找出高度最小的那一列
